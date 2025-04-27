@@ -1,53 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<!-- SMOKE SUITE -->
-<suite name="SmokeSuite" verbose="1" parallel="false">
-    <test name="Smoke Tests - Basic Auth and Navigation">
+<suite name="TestForge Full Suite" verbose="2" parallel="false" thread-count="4">
+
+    <!-- Smoke Tests -->
+    <test name="Smoke Tests">
         <packages>
             <package name="uitest.auth"/>
             <package name="uitest.navigation"/>
         </packages>
     </test>
-</suite>
 
-        <!-- REGRESSION SUITE -->
-<suite name="RegressionSuite" verbose="2" parallel="methods" thread-count="4">
-<test name="Regression Tests - Full System">
-    <packages>
-        <package name="uitest.auth"/>
-        <package name="uitest.cart"/>
-        <package name="uitest.checkout"/>
-        <package name="uitest.products"/>
-        <package name="uitest.categories"/>
-    </packages>
-</test>
-</suite>
+    <!-- Regression Tests -->
+    <test name="Regression Tests">
+        <packages>
+            <package name="uitest.auth"/>
+            <package name="uitest.cart"/>
+            <package name="uitest.checkout"/>
+            <package name="uitest.products"/>
+            <package name="uitest.categories"/>
+        </packages>
+    </test>
 
-        <!-- API SUITE -->
-<suite name="APISuite" verbose="1" parallel="false">
-<test name="API Tests">
-    <packages>
-        <package name="apitest"/>
-    </packages>
-</test>
-</suite>
+    <!-- API Tests -->
+    <test name="API Tests">
+        <packages>
+            <package name="apitest"/>
+        </packages>
+    </test>
 
-        <!-- UI VALIDATION SUITE -->
-<suite name="UIValidationSuite" verbose="1" parallel="methods" thread-count="2">
-<test name="UI Validation Tests">
-    <packages>
-        <package name="uitest.visual"/>
-    </packages>
-</test>
-</suite>
+    <!-- Visual Validation Tests -->
+    <test name="UI Validation Tests">
+        <packages>
+            <package name="uitest.visual"/>
+        </packages>
+    </test>
 
-        <!-- PERFORMANCE SUITE (Optional for Future) -->
-<suite name="PerformanceSuite" verbose="1" parallel="false">
-<test name="Performance Tests (Placeholder)">
-    <classes>
-        <class name="performance.LoadTest"/>
-        <!-- Can add JMeter or Gatling integrations later -->
-    </classes>
-</test>
 </suite>

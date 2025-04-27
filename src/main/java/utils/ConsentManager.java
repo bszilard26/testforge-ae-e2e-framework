@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 public class ConsentManager {
@@ -14,21 +13,20 @@ public class ConsentManager {
     private static final By ACCEPT_BUTTON = By.cssSelector(".fc-button.fc-cta-consent");
 
     public static void handleConsentIfPresent(WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // longer wait
 
         try {
             if (!driver.findElements(CONSENT_OVERLAY).isEmpty()) {
+                System.out.println("⚡ Consent popup detected. Trying to close...");
                 WebElement acceptBtn = wait.until(ExpectedConditions.elementToBeClickable(ACCEPT_BUTTON));
                 acceptBtn.click();
-
-                // Optionally wait for overlay to disappear after clicking
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(CONSENT_OVERLAY));
-                System.out.println("✅ Consent popup accepted and dismissed.");
+                System.out.println("✅ Consent popup closed successfully.");
             } else {
-                System.out.println("ℹ️ Consent overlay not found. Proceeding...");
+                System.out.println("ℹ️ No consent popup detected.");
             }
         } catch (Exception e) {
-            System.out.println("⚠️ [ConsentManager] Issue handling popup: " + e.getMessage());
+            System.out.println("⚠️ Consent popup handling skipped or failed: " + e.getMessage());
         }
     }
 }

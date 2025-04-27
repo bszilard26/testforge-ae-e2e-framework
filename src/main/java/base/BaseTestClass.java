@@ -1,9 +1,10 @@
 package base;
 
-import factory.DriverFactory;
-import utils.ConsentManager;
-import org.openqa.selenium.WebDriver;
+import factory.DriverFactory;         // <-- IMPORT this
+import utils.ConsentManager;          // <-- IMPORT this
+import org.openqa.selenium.WebDriver;  // <-- IMPORT this
 import org.testng.annotations.*;
+import utils.ConsentManager;
 
 public abstract class BaseTestClass {
 
@@ -11,41 +12,23 @@ public abstract class BaseTestClass {
 
     @Parameters("browser")
     @BeforeMethod(alwaysRun = true)
-    public void setUp(@Optional("chrome") String browser) {
-        log("🔧 [Setup] Launching browser: " + browser);
-
+    public void initDriver(@Optional("chrome") String browser) {
         driver = browser.equalsIgnoreCase("headless")
                 ? DriverFactory.newHeadlessChrome()
                 : DriverFactory.newChromeDriver();
-
-        openTestApplication();
-        handleConsentPopup();
-    }
-
-    protected void openTestApplication() {
-        String url = "https://automationexercise.com/";
-        driver.get(url);
-        log("🌐 Navigated to: " + url);
-    }
-
-    protected void handleConsentPopup() {
-        try {
-            ConsentManager.handleConsentIfPresent(driver);
-            log("✅ [Consent] Handled cookie popup if present.");
-        } catch (Exception e) {
-            log("⚠️ [Consent] Failed to handle popup: " + e.getMessage());
-        }
+        driver.get("https://automationexercise.com");
+        ConsentManager.handleConsentIfPresent(driver);
     }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         if (driver != null) {
-            log("🧹 [Teardown] Closing browser...");
-            driver.quit();
+            System.out.println("🧹 [Teardown] Closing browser...");
+            try {
+                driver.quit();
+            } catch (Exception e) {
+                System.out.println("⚠️ Browser already closed or crashed: " + e.getMessage());
+            }
         }
-    }
-
-    private void log(String message) {
-        System.out.println(message);
     }
 }

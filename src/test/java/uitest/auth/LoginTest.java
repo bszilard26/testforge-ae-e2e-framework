@@ -16,7 +16,7 @@ public class LoginTest extends BaseTestClass {
     public void loginWithValidCredentials() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.goTo();
-        loginPage.enterEmail("szilardautomationuser@gmail.com\n");
+        loginPage.enterEmail("szilardautomationuser@gmail.com");
         loginPage.enterPassword("Pass1234!");
         loginPage.submit();
 

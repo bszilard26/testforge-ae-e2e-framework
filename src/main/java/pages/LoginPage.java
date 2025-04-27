@@ -36,20 +36,12 @@ public class LoginPage extends BasePage {
     // Actions
     public void goTo() {
         driver.get("https://automationexercise.com");
-
-        // ✅ Handle cookie consent if present
-        try {
-            if (!driver.findElements(consentOverlay).isEmpty()) {
-                WebElement closeBtn = wait.until(ExpectedConditions.elementToBeClickable(consentClose));
-                closeBtn.click();
-                wait.until(ExpectedConditions.invisibilityOfElementLocated(consentOverlay));
-            }
-        } catch (Exception e) {
-            System.out.println("⚠️ Modal dismiss skipped or already gone: " + e.getMessage());
-        }
-
-        wait.until(ExpectedConditions.elementToBeClickable(loginMenu)).click();
+        // Rely on ConsentManager globally (handled in BaseTestClass)
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(loginMenu))
+                .click();
     }
+
 
     public void enterEmail(String email) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(emailInput)).sendKeys(email);

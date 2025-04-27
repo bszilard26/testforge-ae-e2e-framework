@@ -12,8 +12,8 @@ public class LogoutTest extends BaseTestClass {
         LoginPage loginPage = LoginPage.loginPage(driver);
 
         loginPage.goTo();
-        loginPage.enterEmail("valid_email@example.com"); // Replace with your real test email
-        loginPage.enterPassword("valid_password");       // Replace with your real test password
+        loginPage.enterEmail("szilardautomationuser@gmail.com"); // Replace with your real test email
+        loginPage.enterPassword("Pass1234!");       // Replace with your real test password
         loginPage.submit();
 
         Assert.assertTrue(loginPage.isLoginSuccessful(), "❌ Login was not successful!");
