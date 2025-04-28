@@ -1,100 +1,92 @@
-🧪  TestForge AE E2E Automation Framework
-Welcome to the TestForge AutomationExercise E2E Framework!
+TestForge AE E2E Automation Framework
+Welcome to the TestForge AE Automation Framework!
 This project automates UI and API flows using modern tools, clean architecture, and professional practices.
 
 🚀 Tech Stack
+Language: Java 21 (aarch64 ✅)
 
-Area	Tech Used
-Language	Java 21 (aarch64 ✅)
-Build Tool	Maven
-Test Framework	TestNG
-Automation	Selenium WebDriver 4.19.0
-Dependency Mgmt	WebDriverManager 5.8.0
-Reporting	Allure Reports 2.24.0 (TestNG adapter)
-API Testing	RestAssured 5.4.0 (optional)
-Browser	Chrome (default)
-🛠 Project Structure
-graphql
+Build Tool: Maven
+
+Test Framework: TestNG
+
+Automation: Selenium WebDriver 4.19.0
+
+Dependency Management: WebDriverManager 5.8.0
+
+Reporting: Allure Reports 2.24.0
+
+API Testing: RestAssured 5.4.0 (optional)
+
+🗂 Project Structure
+bash
 Copy
 Edit
-src/
-├── main/
-│    └── java/
-│         ├── api/                      # (Reserved for API base classes)
-│         ├── base/                     # BaseTestClass with WebDriver setup
-│         ├── factory/                  # DriverFactory for browser initialization
-│         ├── helper/                   # (Reserved for future utilities/helpers)
-│         ├── pages/
-│         │     ├── BasePage.java        # Common methods for page objects
-│         │     └── LoginPage.java       # Login page interactions
-│         └── utils/
-│               ├── ConsentManager.java  # Handle cookie consent popups
-│               ├── ScreenshotUtils.java # Capture screenshots on failure
-│               └── WaitingUtils.java    # (Reserved for smart waits)
-│
-└── test/
-└── java/
-├── apitest/                  # (Reserved for future API tests)
-├── listeners/                # (Test listeners if needed)
-├── uitest/
-│     ├── auth/
-│     │     ├── LoginTest.java
-│     │     └── LogoutTest.java
-│     ├── cart/
-│     │     └── CartTest.java
-│     ├── categories/
-│     │     ├── CategoryExpandCollapseTest.java
-│     │     ├── CategoryNavigationTest.java
-│     │     └── RapidCategoryClickTest.java
-│     ├── checkout/
-│     ├── products/
-│     ├── subscription/
-│     └── visual/
-resources/
-🧩 Features
-✅ Page Object Model (POM)
-
+src
+ ├── main
+ │    └── java
+ │         ├── api                  # Reserved for API base classes
+ │         ├── base                 # BaseTestClass with WebDriver setup
+ │         ├── factory              # DriverFactory for browser management
+ │         ├── helper               # Helper utilities
+ │         ├── pages                # Page Object Models (POM)
+ │         │     └── LoginPage.java
+ │         ├── utils                # Utilities (ScreenshotUtils, ConsentManager, WaitingUtils)
+ │         └── resources
+ └── test
+      └── java
+           ├── uitest
+           │     ├── auth
+           │     │    ├── LoginTest.java
+           │     │    └── LogoutTest.java
+           │     ├── cart
+           │     │    └── CartTest.java
+           │     └── categories
+           │           ├── CategoryExpandCollapseTest.java
+           │           ├── CategoryNavigationTest.java
+           │           └── RapidCategoryClickTest.java
+           └── apitest                # Reserved for future API tests
+🌟 Features
 ✅ Auto-consent popup handling
 
-✅ Screenshots captured on test failures (Allure attachments)
+✅ Capture screenshots on test failure (attached in Allure Reports)
 
 ✅ Parallel execution ready
 
 ✅ Headless Chrome support
 
-✅ Allure Reporting Integration
+✅ Full Allure Reporting Integration
 
-📋 Prerequisites
-Java 21 (aarch64 chip support ✅)
+✅ Clean, modular project architecture (Page Object Model)
 
-Maven
+🛠 Prerequisites
+Java 21 installed
+
+Maven installed
 
 Chrome installed
 
-Allure CLI installed:
+Allure CLI installed (brew install allure on Mac)
 
+📈 How to Run Tests and Generate Reports
 bash
 Copy
 Edit
-brew install allure
-⚙️ How to Run Tests and View Report
-Run tests and immediately open Allure report:
-
-bash
-Copy
-Edit
-mvn clean test
-allure serve target/allure-results
-💡 Pro Tip (Create a shortcut command):
+# Run all tests and automatically open Allure report
+mvn clean test && allure serve target/allure-results
+💬 Tip: You can add it as a shortcut:
 
 bash
 Copy
 Edit
 echo "alias runallure='mvn clean test && allure serve target/allure-results'" >> ~/.zshrc
 source ~/.zshrc
-Then simply:
+Then just run:
 
 bash
 Copy
 Edit
 runallure
+📣 Final Notes
+This project serves as a real-world-ready automation blueprint for UI testing.
+More improvements coming soon: API tests, Docker integration, and GitHub Actions CI/CD!
+
