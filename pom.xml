@@ -43,6 +43,14 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- ✅ JSON Path for parsing API responses -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-path</artifactId>
+            <version>5.4.0</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- ✅ Allure TestNG Adapter -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
@@ -80,5 +88,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

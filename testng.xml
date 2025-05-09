@@ -22,11 +22,27 @@
         </packages>
     </test>
 
-    <!-- API Tests -->
-    <test name="API Tests">
+    <!-- API Tests: Full Regression -->
+    <test name="API - Full Regression">
         <packages>
             <package name="apitest"/>
         </packages>
+    </test>
+
+    <!-- API Tests: Smoke -->
+    <test name="API - Smoke Tests">
+        <classes>
+            <class name="apitest.ProductApiTests"/>
+            <class name="apitest.BrandApiTests"/>
+        </classes>
+    </test>
+
+    <!-- API Tests: Negative Tests -->
+    <test name="API - Negative & Edge Cases">
+        <classes>
+            <class name="apitest.AuthNegativeApiTests"/>
+            <class name="apitest.SearchNegativeApiTests"/>
+        </classes>
     </test>
 
     <!-- Visual Validation Tests -->
