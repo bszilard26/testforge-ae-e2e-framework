@@ -17,34 +17,7 @@ Reporting: Allure Reports 2.24.0
 
 API Testing: RestAssured 5.4.0 (optional)
 
-🗂 Project Structure
-bash
-Copy
-Edit
-src
- ├── main
- │    └── java
- │         ├── api                  # Reserved for API base classes
- │         ├── base                 # BaseTestClass with WebDriver setup
- │         ├── factory              # DriverFactory for browser management
- │         ├── helper               # Helper utilities
- │         ├── pages                # Page Object Models (POM)
- │         │     └── LoginPage.java
- │         ├── utils                # Utilities (ScreenshotUtils, ConsentManager, WaitingUtils)
- │         └── resources
- └── test
-      └── java
-           ├── uitest
-           │     ├── auth
-           │     │    ├── LoginTest.java
-           │     │    └── LogoutTest.java
-           │     ├── cart
-           │     │    └── CartTest.java
-           │     └── categories
-           │           ├── CategoryExpandCollapseTest.java
-           │           ├── CategoryNavigationTest.java
-           │           └── RapidCategoryClickTest.java
-           └── apitest                # Reserved for future API tests
+<pre> 📁 Project Structure ``` src └── main └── java ├── api # Reserved for API base classes ├── base # BaseTestClass with WebDriver setup ├── factory # DriverFactory for browser management ├── helper # Helper utilities (e.g. ScreenshotUtils, ConsentManager, WaitingUtils) ├── pages # Page Object Models (POM) │ └── LoginPage.java └── utils # Utility classes resources test └── java ├── apitest # Reserved for future API tests └── uitest ├── auth │ ├── LoginTest.java │ └── LogoutTest.java ├── cart │ └── CartTest.java └── categories ├── CategoryExpandCollapseTest.java ├── CategoryNavigationTest.java └── RapidCategoryClickTest.java ``` </pre>
 🌟 Features
 ✅ Auto-consent popup handling
 
