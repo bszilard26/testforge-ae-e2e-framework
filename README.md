@@ -16,7 +16,7 @@ Dependency Management: WebDriverManager 5.8.0
 Reporting: Allure Reports 2.24.0
 
 API Testing: RestAssured 5.4.0 (optional)
-
+```
 src
  ├── main
  │    └── java
@@ -41,6 +41,7 @@ src
            │           ├── CategoryNavigationTest.java
            │           └── RapidCategoryClickTest.java
            └── apitest                # Reserved for future API tests
+```
 🌟 Features
 ✅ Auto-consent popup handling
 
