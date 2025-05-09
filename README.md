@@ -17,7 +17,30 @@ Reporting: Allure Reports 2.24.0
 
 API Testing: RestAssured 5.4.0 (optional)
 
-<pre lang="text"> 📦 testforge-ae-e2e-framework ├── 📁 .idea/ # IDE settings ├── 📄 .gitignore ├── 📄 pom.xml # Maven config ├── 📄 testng.xml # TestNG suite file ├── 📄 README.md # Project overview ├── 📁 src/ │ ├── 📁 main/ │ │ ├── 📁 java/ │ │ │ ├── 📁 api/ # (Reserved for API models/tests) │ │ │ ├── 📁 base/ # BaseTestClass, BasePage │ │ │ ├── 📁 factory/ # WebDriverFactory, DriverManager │ │ │ ├── 📁 helper/ # Common helpers (if any) │ │ │ ├── 📁 pages/ # Page Object Model classes │ │ │ └── 📁 utils/ # ScreenshotUtils, ConsentManager, WaitingUtils │ │ └── 📁 resources/ # Any resource files if used │ └── 📁 test/ └── 📁 java/ ├── 📁 apitest/ # Reserved for future API tests └── 📁 uitest/ ├── 📁 auth/ │ ├── LoginTest.java │ └── LogoutTest.java ├── 📁 cart/ │ └── CartTest.java └── 📁 categories/ ├── CategoryExpandCollapseTest.java ├── CategoryNavigationTest.java └── RapidCategoryClickTest.java </pre>
+src
+ ├── main
+ │    └── java
+ │         ├── api                  # Reserved for API base classes
+ │         ├── base                 # BaseTestClass with WebDriver setup
+ │         ├── factory              # DriverFactory for browser management
+ │         ├── helper               # Helper utilities
+ │         ├── pages                # Page Object Models (POM)
+ │         │     └── LoginPage.java
+ │         ├── utils                # Utilities (ScreenshotUtils, ConsentManager, WaitingUtils)
+ │         └── resources
+ └── test
+      └── java
+           ├── uitest
+           │     ├── auth
+           │     │    ├── LoginTest.java
+           │     │    └── LogoutTest.java
+           │     ├── cart
+           │     │    └── CartTest.java
+           │     └── categories
+           │           ├── CategoryExpandCollapseTest.java
+           │           ├── CategoryNavigationTest.java
+           │           └── RapidCategoryClickTest.java
+           └── apitest                # Reserved for future API tests
 🌟 Features
 ✅ Auto-consent popup handling
 
