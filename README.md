@@ -17,7 +17,7 @@ Reporting: Allure Reports 2.24.0
 
 API Testing: RestAssured 5.4.0 (optional)
 
-<pre> 📁 Project Structure ``` src └── main └── java ├── api # Reserved for API base classes ├── base # BaseTestClass with WebDriver setup ├── factory # DriverFactory for browser management ├── helper # Helper utilities (e.g. ScreenshotUtils, ConsentManager, WaitingUtils) ├── pages # Page Object Models (POM) │ └── LoginPage.java └── utils # Utility classes resources test └── java ├── apitest # Reserved for future API tests └── uitest ├── auth │ ├── LoginTest.java │ └── LogoutTest.java ├── cart │ └── CartTest.java └── categories ├── CategoryExpandCollapseTest.java ├── CategoryNavigationTest.java └── RapidCategoryClickTest.java ``` </pre>
+<pre> testforge-ae-e2e-framework ├── .idea/ # IDE settings ├── .gitignore ├── pom.xml # Maven configuration ├── testng.xml # TestNG suite config ├── README.md ├── src/ │ ├── main/ │ │ ├── java/ │ │ │ ├── api/ # Reserved for API base classes │ │ │ ├── base/ # BaseTestClass, BasePage │ │ │ ├── factory/ # WebDriverFactory, BrowserManager │ │ │ ├── helper/ # Shared utilities │ │ │ ├── pages/ # Page Object Models (POM) │ │ │ └── utils/ # ScreenshotUtils, ConsentManager, WaitingUtils │ │ └── resources/ # Any test resources if needed │ └── test/ └── java/ ├── apitest/ # Reserved for API tests (future) └── uitest/ ├── auth/ # Login, Logout test cases │ ├── LoginTest.java │ └── LogoutTest.java ├── cart/ │ └── CartTest.java └── categories/ ├── CategoryExpandCollapseTest.java ├── CategoryNavigationTest.java └── RapidCategoryClickTest.java </pre>
 🌟 Features
 ✅ Auto-consent popup handling
 
