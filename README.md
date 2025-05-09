@@ -1,6 +1,12 @@
-TestForge AE E2E Automation Framework
-Welcome to the TestForge AE Automation Framework!
-This project automates UI and API flows using modern tools, clean architecture, and professional practices.
+# 🚀 TestForge AE: End-to-End Automation Framework
+
+Welcome to **TestForge AE**, an advanced Java-based E2E testing framework that automates UI and API flows using Selenium WebDriver, TestNG, and Allure Reports. This project showcases clean architecture, modular design, and robust reporting — ideal for portfolio and production readiness.
+
+![Java](https://img.shields.io/badge/Language-Java%2021-orange)
+![Build](https://img.shields.io/badge/Build-Maven-blue)
+![Test Framework](https://img.shields.io/badge/TestNG-Enabled-brightgreen)
+![Allure](https://img.shields.io/badge/Allure%20Reports-Integrated-purple)
+![Status](https://img.shields.io/badge/CI-CD%20Ready-green)
 
 🚀 Tech Stack
 Language: Java 21 (aarch64 ✅)
