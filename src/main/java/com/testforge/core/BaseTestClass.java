@@ -1,6 +1,8 @@
 package com.testforge.core;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -8,9 +10,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-/**
- * Base test class that sets up and tears down the WebDriver before/after test classes.
- */
 public class BaseTestClass {
 
     protected WebDriver driver;
@@ -18,26 +17,27 @@ public class BaseTestClass {
 
     @BeforeClass
     public void setUp() throws IOException {
-        // Setup driver with unique user data dir (for GitHub Actions safety)
-        userDataDir = Files.createTempDirectory("chrome-profile");
-        driver = DriverFactory.newChromeDriverWithProfile(userDataDir);
+        // Generate unique temporary user data directory
+        userDataDir = Files.createTempDirectory("chrome-user-data");
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+        options.addArguments("--user-data-dir=" + userDataDir.toAbsolutePath().toString());
+
+        driver = new ChromeDriver(options);
     }
 
-    @AfterClass
-    public void tearDown() throws IOException {
+    @AfterClass(alwaysRun = true)
+    public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
 
-        if (userDataDir != null) {
-            Files.walk(userDataDir)
-                    .map(Path::toFile)
-                    .sorted((a, b) -> -a.compareTo(b)) // delete children before parents
-                    .forEach(file -> {
-                        if (!file.delete()) {
-                            System.err.println("⚠️ Failed to delete: " + file.getAbsolutePath());
-                        }
-                    });
+        // Cleanup temp user data directory
+        try {
+            Files.deleteIfExists(userDataDir);
+        } catch (IOException e) {
+            System.err.println("⚠️ Failed to delete temporary user-data-dir: " + e.getMessage());
         }
     }
 }
