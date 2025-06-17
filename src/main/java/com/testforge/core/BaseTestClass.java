@@ -1,46 +1,43 @@
 package com.testforge.core;
 
-import io.qameta.allure.Attachment;
-import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.WebDriver;
-import org.testng.ITestResult;
-import org.testng.annotations.*;
-import com.testforge.core.utils.ConsentManager;
-import com.testforge.core.utils.ScreenshotUtils;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 
-@Listeners({AllureTestNg.class})
-public abstract class BaseTestClass {
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+/**
+ * Base test class that sets up and tears down the WebDriver before/after test classes.
+ */
+public class BaseTestClass {
 
     protected WebDriver driver;
+    private Path userDataDir;
 
-    @Parameters("browser")
-    @BeforeMethod(alwaysRun = true)
-    public void initDriver(@Optional("chrome") String browser) {
-        driver = browser.equalsIgnoreCase("headless")
-                ? DriverFactory.newHeadlessChrome()
-                : DriverFactory.newChromeDriver();
-        driver.get("https://automationexercise.com");
-        ConsentManager.handleConsentIfPresent(driver);
+    @BeforeClass
+    public void setUp() throws IOException {
+        // Setup driver with unique user data dir (for GitHub Actions safety)
+        userDataDir = Files.createTempDirectory("chrome-profile");
+        driver = DriverFactory.newChromeDriverWithProfile(userDataDir);
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void tearDown(ITestResult result) {
+    @AfterClass
+    public void tearDown() throws IOException {
         if (driver != null) {
-            if (result.getStatus() == ITestResult.FAILURE) {
-                System.out.println("❌ Test failed. Capturing screenshot...");
-                ScreenshotUtils.attachScreenshot(driver);
-            }
-            try {
-                System.out.println("🧹 [Teardown] Closing browser...");
-                driver.quit();
-            } catch (Exception e) {
-                System.out.println("⚠️ Browser already closed or crashed: " + e.getMessage());
-            }
+            driver.quit();
         }
-    }
 
-    @Attachment(value = "Page Source", type = "text/html")
-    protected String savePageSource() {
-        return driver.getPageSource();
+        if (userDataDir != null) {
+            Files.walk(userDataDir)
+                    .map(Path::toFile)
+                    .sorted((a, b) -> -a.compareTo(b)) // delete children before parents
+                    .forEach(file -> {
+                        if (!file.delete()) {
+                            System.err.println("⚠️ Failed to delete: " + file.getAbsolutePath());
+                        }
+                    });
+        }
     }
 }

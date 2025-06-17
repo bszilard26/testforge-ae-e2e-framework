@@ -1,39 +1,49 @@
 package com.testforge.core;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
-import java.time.Duration;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * DriverFactory provides factory methods to initialize WebDriver instances.
- * Supports both headed and headless Chrome.
+ * Supports both headed and headless Chrome with isolated user-data-dir.
  */
 public class DriverFactory {
 
-    public static WebDriver newChromeDriver() {
+    /**
+     * Launch a new ChromeDriver with GUI and unique user profile.
+     */
+    public static WebDriver newChromeDriverWithProfile(Path userDataDir) {
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
+        options.addArguments("--user-data-dir=" + userDataDir.toAbsolutePath());
 
-        return applyCommonSetup(new ChromeDriver(options));
+        return new ChromeDriver(options);
     }
 
-    public static WebDriver newHeadlessChrome() {
-        WebDriverManager.chromedriver().setup();  // ✅ Put it here
 
+    /**
+     * Launch a headless ChromeDriver with isolated user profile and CI-safe options.
+     */
+    public static WebDriver newHeadlessChrome() throws IOException {
+        WebDriverManager.chromedriver().setup();
+
+        Path userDataDir = Files.createTempDirectory("chrome-profile");
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new", "--disable-gpu", "--window-size=1920,1080");
+        options.addArguments("--headless=new");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--window-size=1920,1080");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--user-data-dir=" + userDataDir.toAbsolutePath());
 
-        return applyCommonSetup(new ChromeDriver(options));  // ✅ This returns the ready-to-go driver
-    }
-
-    private static WebDriver applyCommonSetup(WebDriver driver) {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        return driver;
+        return new ChromeDriver(options);
     }
 }
-
