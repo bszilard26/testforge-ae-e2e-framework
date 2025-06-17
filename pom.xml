@@ -57,6 +57,13 @@
             <artifactId>allure-testng</artifactId>
             <version>2.24.0</version>
         </dependency>
+
+        <!-- ✅ SLF4J Simple Binding (for proper logging output) -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.9</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -73,6 +80,8 @@
                     <systemPropertyVariables>
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                     </systemPropertyVariables>
+                    <!-- Optional: Disable parallel execution to avoid shared resource conflicts -->
+                    <parallel>none</parallel>
                 </configuration>
             </plugin>
 
