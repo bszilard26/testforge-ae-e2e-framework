@@ -28,17 +28,26 @@
 src/
 ├── main/
 │   └── java/
-│       ├── api/                    # Reserved for future API base classes
-│       ├── base/                   # BaseTestClass (WebDriver setup)
-│       ├── factory/                # DriverFactory
-│       ├── helper/                 # Helper utilities
-│       ├── pages/                  # Page Object Models (LoginPage.java, etc.)
-│       ├── utils/                  # ConsentManager, ScreenshotUtils, WaitingUtils
-│       └── resources/
+│       └── com/
+│           └── testforge/
+│               ├── api/               # Reserved for future API support classes
+│               ├── config/            # Centralized environment and configuration files
+│               └── core/              # Framework core layer
+│                   ├── pages/             # Page Object Models (LoginPage, BasePage, etc.)
+│                   ├── utils/             # Utility classes (ConsentManager, ScreenshotUtils, WaitingUtils)
+│                   ├── BaseTestClass.java # WebDriver setup and teardown logic
+│                   └── DriverFactory.java # Browser instantiation logic
 ├── test/
 │   └── java/
+│       ├── apitest/
+│       │   └── products/              # API tests (e.g. GetAllProducts, SearchProduct)
 │       └── uitest/
-│           ├── auth/              # Login/Logout tests
-│           ├── cart/              # Cart tests
-│           └── categories/        # Category navigation tests
-└── testng.xml
+│           ├── auth/                 # Login & Logout tests
+│           ├── cart/                 # Cart behavior validations
+│           ├── categories/           # Category menu interaction tests
+│           ├── checkout/             # Checkout flow validations
+│           ├── products/             # Product search, add-to-cart, detail validations
+│           ├── subscription/         # Subscription module checks
+│           └── visual/               # Visual/UI validation tests (image loading, layout checks)
+├── testng.xml                        # TestNG suite configuration
+└── pom.xml                           # Maven project descriptor

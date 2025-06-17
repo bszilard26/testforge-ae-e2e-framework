@@ -6,19 +6,19 @@
     <!-- Smoke Tests -->
     <test name="Smoke Tests">
         <packages>
-            <package name="uitest.auth"/>
-            <package name="uitest.navigation"/>
+            <package name="uitests.auth"/>
+            <package name="uitests.navigation"/>
         </packages>
     </test>
 
     <!-- Regression Tests -->
     <test name="Regression Tests">
         <packages>
-            <package name="uitest.auth"/>
-            <package name="uitest.cart"/>
-            <package name="uitest.checkout"/>
-            <package name="uitest.products"/>
-            <package name="uitest.categories"/>
+            <package name="uitests.auth"/>
+            <package name="uitests.cart"/>
+            <package name="uitests.checkout"/>
+            <package name="uitests.products"/>
+            <package name="uitests.categories"/>
         </packages>
     </test>
 
@@ -48,7 +48,7 @@
     <!-- Visual Validation Tests -->
     <test name="UI Validation Tests">
         <packages>
-            <package name="uitest.visual"/>
+            <package name="uitests.visual"/>
         </packages>
     </test>
 
